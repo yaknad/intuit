@@ -1,0 +1,18 @@
+version: '3'
+services:
+
+  intuit-payment:
+    container_name: player-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: player-service:latest
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/players
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: create
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+

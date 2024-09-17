@@ -1,0 +1,50 @@
+-- Kafka Server --
+------------------
+/bin/kafka-topics -list --bootstrap-server=localhost:9092
+
+/bin/kafka-run-class kafka.tools.GetOffsetShell   --broker-list localhost:9092  --topic file-events
+
+
+-- Postman --
+-------------
+GET http://localhost:8080/api/approach1/players
+
+-- pgAdmin ---
+--------------
+http://localhost:8888/browser/
+
+get the docker ip for postgres like in here:
+https://stackoverflow.com/questions/57109494/unable-to-connect-to-server-pgadmin-4
+
+docker inspect postgres     ## 172.18.0.2 / 4
+get the user / password from the docker compose yaml, no role!
+postgres@postgres.com ,  password
+for the postgres db - user and password:
+postgres, password
+
+-- Spring --
+------------
+https://start.spring.io/
+
+-- Postgres --
+--------------
+in application.properties: on the first run -
+spring.jpa.hibernate.ddl-auto=create
+after the first run -
+spring.jpa.hibernate.ddl-auto=update
+
+-- docker --
+------------
+when running the service from IntelliJ, remove the service from the docker-compose, since it declares also
+the same env vars like application.properties and they collide / override
+
+===> delete old service images (they are not being overriden when rerunning the docker compose)
+
+cd C:\Users\yakna\Desktop\Intuit Project\player-service\player-service
+docker compose up -d
+
+dockerfile and docker-compose in SpringBoot + scaling up dockerized services:
+https://www.baeldung.com/dockerizing-spring-boot-application
+
+docker build --tag=player-service:latest .
+docker run -p8080:8080 player-service:latest
